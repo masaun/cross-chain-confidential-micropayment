@@ -1,7 +1,9 @@
 [workspace]
 members = [
     "src/nr/counter_contract",
+    "src/nr/aztec_gateway_7683"
 ]
 
 [benchmark]
 counter = "benchmarks/counter.benchmark.ts"
+aztec_gateway_7683 = "benchmarks/aztec_gateway_7683.benchmark.ts"
