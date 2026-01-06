@@ -1,0 +1,25 @@
+# Aztec and Noir/Nargo
+target/
+src/artifacts/
+codegenCache.json
+
+# Secret files
+.env
+.env.local
+
+# Node modules
+node_modules
+package-lock.json
+
+# Others
+log/
+.vscode
+.DS_Store
+.cursor
+
+# Aztec SC related
+pxe-test-vault/
+pxe-test-x402/
+
+# Aztec SC test 
+test-output.log
