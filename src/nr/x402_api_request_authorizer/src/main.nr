@@ -1,0 +1,61 @@
+use aztec::macros::aztec;
+pub mod test;
+
+/**
+ * @title - X402ApiRequestAuthorizer using zkTLS
+ * @dev - A contract that demonstrates API request authorization using zkTLS.
+ */
+#[aztec]
+pub contract X402ApiRequestAuthorizer {
+    // aztec library imports
+    use aztec::{
+        macros::{functions::{external, initializer, internal, view}, storage::storage},
+        protocol_types::address::AztecAddress,
+        state_vars::{PublicImmutable, PublicMutable},
+    };
+
+    // @param owner The address of the owner
+    // @param counter A numerical value
+    #[storage]
+    struct Storage<Context> {
+        owner: PublicImmutable<AztecAddress, Context>,
+        authorized_api_request_id: PublicMutable<u128, Context>,
+    }
+
+    /// @dev Initialize the contract
+    /// @param owner The address of the owner
+    #[external("public")]
+    #[initializer]
+    fn constructor(owner: AztecAddress) {
+        storage.owner.initialize(owner);
+    }
+
+    /// @dev Retrieves the owner of the contract
+    /// @return The owner of the contract
+    #[external("public")]
+    fn get_owner() -> AztecAddress {
+        storage.owner.read()
+    }
+
+    /// @dev Increments the authorized API request id
+    #[external("private")]
+    fn increment_authorized_api_request_id() {
+        X402ApiRequestAuthorizer::at(context.this_address()).increment_authorized_api_request_id_internal().enqueue(&mut context);
+    }
+
+    /// @dev Retrieves the authorized API request id
+    /// @return The current authorized API request id
+    #[external("public")]
+    #[view]
+    fn get_authorized_api_request_id() -> u128 {
+        storage.authorized_api_request_id.read()
+    }
+
+    /// @dev Increments the authorized API request id
+    #[external("public")]
+    #[internal]
+    fn increment_authorized_api_request_id_internal() {
+        let current_authorized_api_request_id = storage.authorized_api_request_id.read();
+        storage.authorized_api_request_id.write(current_authorized_api_request_id + 1);
+    }
+}

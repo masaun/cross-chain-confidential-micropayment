@@ -1,7 +1,8 @@
 [workspace]
 members = [
-    "src/nr/counter_contract",
-    "src/nr/aztec_gateway_7683"
+    "src/nr/x402_api_request_authorizer",
+    #"src/nr/aztec_gateway_7683",
+    #"src/nr/counter_contract"
 ]
 
 [benchmark]
