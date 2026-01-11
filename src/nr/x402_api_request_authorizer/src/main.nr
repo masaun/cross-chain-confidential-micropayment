@@ -91,13 +91,13 @@ pub contract X402ApiRequestAuthorizer {
     /***********************************
      *   @notice - External functions  *
      ***********************************/
-    /// @dev - Authorizes an x402 API request/response of the Cronos's x402 "Verify" Endpoint using zkTLS proof (via the Primus old version for Cronos?)
+    /// @dev - Authorizes an x402 API request/response of the Cronos x402 facilitator's "Verify" Endpoint using zkTLS proof (via the Primus old version for Cronos?)
     /// @dev - ref/Cronos API Reference: https://docs.cronos.org/cronos-x402-facilitator/api-reference
     /// @dev - ref/Cronos e2e Payment Flow: https://docs.cronos.org/cronos-x402-facilitator/how-it-works#payment-flow
-    /// @param x402_api_proof_from_zktls - The zkTLS proof for the x402 "Verify" Endpoint request/response. (NOTE: Not zkTLS proof for the x402 "Settle" Endpoint)
+    /// @param x402_api_proof_from_zktls - The zkTLS proof for the Cronos x402 facilitator's "Verify" Endpoint request/response. (NOTE: Not zkTLS proof for the x402 "Settle" Endpoint)
     ///                                  - Because we should replace the "Settle" flow with our private/confidential payment way. 
     #[external("private")]
-    fn authorize_x402_verify_endpoint_req_and_res(
+    fn authorize_cronos_x402_facilitator_based_verify_endpoint(
         zktls_proof_for_x402_verify_endpoint_req_and_res: BoundedVec<u8, MAX_ZKTLS_PROOF_LENGTH>, 
         amount_to_be_transfered_from_public_inputs_of_zktls_proof: BoundedVec<u8, MAX_AMOUNT_LENGTH>
     ) {
@@ -137,6 +137,19 @@ pub contract X402ApiRequestAuthorizer {
         //     "invalidReason": null
         // }
     }
+
+    /// @dev - Settle the payment via the confidential channel - after an x402 API request/response of the Cronos's x402 "Verify" Endpoint would be verified.
+    #[external("private")]
+    fn settle_x402_micropayment_via_confidential_channel(
+        aztec_sender_address: AztecAddress,
+        evm_l2_recipient_address: AztecAddress,
+        evm_l2_asset_address: AztecAddress,
+        amount: u128
+    ) {
+        // [TODO]: Using/Integrating the "aztec_gateway_7683" contract to settle the payment
+    }
+
+
 
 
     /// @dev Increments the authorized API request id
