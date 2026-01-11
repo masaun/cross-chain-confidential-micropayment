@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "./att_verifier",
+    "./partial_att_verifier",
+    "./basic_business_program"
+]

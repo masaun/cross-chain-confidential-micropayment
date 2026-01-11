@@ -12,4 +12,6 @@ contract_instance_registry = { git = "https://github.com/AztecProtocol/aztec-pac
 
 # External Contracts
 aztec_gateway_7683 = { path = "../aztec_gateway_7683" }
-primus_zktls = { path = "../primus_zktls" }
+att_verifier = { path = "../primus_zktls/att_verifier" }
+partial_att_verifier = { path = "../primus_zktls/partial_att_verifier" }
+basic_business_program = { path = "../primus_zktls/basic_business_program" }
