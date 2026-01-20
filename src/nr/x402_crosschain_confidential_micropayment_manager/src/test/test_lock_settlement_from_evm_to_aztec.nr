@@ -84,6 +84,8 @@ unconstrained fn lock_settlement_from_evm_to_aztec_success() {
     // @dev - Create the X402PrivatePaymentRouter contract instance
     //let aztec_gateway_7683 = AztecGateway7683::at(aztec_gateway_7683_contract_address);
 
+    // @dev - [TODO]: Create the Token contract instance (for storing it into the "evm_l2_asset_address")
+
     // @dev - Call the lock_settlement_from_evm_to_aztec() of the X402CrossChainConfidentialMicropaymentManager contract
     let secret: Field = 1234567890u128.to_field();
     let secret_hash = poseidon2_hash([secret]);

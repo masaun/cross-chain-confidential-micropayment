@@ -84,6 +84,8 @@ unconstrained fn unlock_settlement_from_aztec_to_evm_success() {
     // @dev - Create the X402PrivatePaymentRouter contract instance
     //let aztec_gateway_7683 = AztecGateway7683::at(aztec_gateway_7683_contract_address);
 
+    // @dev - [TODO]: Create the Token contract instance (for storing it into the "evm_l2_asset_address")
+
     // @dev - Call the unlock_settlement_from_aztec_to_evm() of the X402CrossChainConfidentialMicropaymentManager contract
     let aztec_sender_address: AztecAddress = user1;
     let evm_l2_recipient_address: AztecAddress = user2;
