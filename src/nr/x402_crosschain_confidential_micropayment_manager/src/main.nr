@@ -251,6 +251,39 @@ pub contract X402CrossChainConfidentialMicropaymentManager {
         // @dev - Create a OnchainCrossChainOrder struct data with PRIVATE_ORDER type
         let mut order_data_bytes: [u8; ORDER_DATA_LENGTH] = [0u8; ORDER_DATA_LENGTH];
         
+        // Set sender field (bytes 0-31) to zero bytes since open_private forces sender to be AztecAddress::zero()
+        // Already zero from initialization
+        
+        // Set recipient field (bytes 32-63) - using a placeholder
+        let recipient_bytes: [u8; 32] = [2u8; 32];
+        for i in 0..32 {
+            order_data_bytes[32 + i] = recipient_bytes[i];
+        }
+        
+        // Set input_token field (bytes 64-95) - using a placeholder
+        let input_token_bytes: [u8; 32] = [3u8; 32];
+        for i in 0..32 {
+            order_data_bytes[64 + i] = input_token_bytes[i];
+        }
+        
+        // Set output_token field (bytes 96-127) - using a placeholder
+        let output_token_bytes: [u8; 32] = [4u8; 32];
+        for i in 0..32 {
+            order_data_bytes[96 + i] = output_token_bytes[i];
+        }
+        
+        // Set amount_in field (bytes 128-159) - 100 tokens
+        order_data_bytes[159] = 100u8;
+        
+        // Set amount_out field (bytes 160-191) - 95 tokens
+        order_data_bytes[191] = 95u8;
+        
+        // Set sender_nonce field (bytes 192-223) - using a placeholder
+        let nonce_bytes: [u8; 32] = [5u8; 32];
+        for i in 0..32 {
+            order_data_bytes[192 + i] = nonce_bytes[i];
+        }
+        
         // Set order_type field (byte 268) to PRIVATE_ORDER (1)
         order_data_bytes[268] = PRIVATE_ORDER;
         
@@ -266,8 +299,27 @@ pub contract X402CrossChainConfidentialMicropaymentManager {
             order_data_bytes[228 + i] = domain_bytes[i];
         }
         
+        // Set destination_settler (bytes 232-263) - using a placeholder
+        let destination_settler_bytes: [u8; 32] = [6u8; 32];
+        for i in 0..32 {
+            order_data_bytes[232 + i] = destination_settler_bytes[i];
+        }
+        
+        // Set fill_deadline (bytes 264-267) - 1000000
+        let fill_deadline: u32 = 1000000;
+        let deadline_bytes: [u8; 4] = (fill_deadline as Field).to_be_bytes();
+        for i in 0..4 {
+            order_data_bytes[264 + i] = deadline_bytes[i];
+        }
+        
+        // Set data field (bytes 269-300) - using a placeholder
+        let data_bytes: [u8; 32] = [7u8; 32];
+        for i in 0..32 {
+            order_data_bytes[269 + i] = data_bytes[i];
+        }
+        
         let onchain_cross_chain_order = OnchainCrossChainOrder {
-            fill_deadline: 0,
+            fill_deadline: 1000000,  // Must match the fill_deadline in order_data_bytes
             order_data_type: ORDER_DATA_TYPE,
             order_data: order_data_bytes
         };
