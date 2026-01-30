@@ -2,6 +2,10 @@
 
 ## Overview
 
+- This is the x402 Cross Chain Confidential Payment built on Aztec Network, which the smart contract is written in Noir.
+  - Also, this project is built on the [Aztec EVM Bridge](https://github.com/substance-labs/aztec-evm-bridge) (powered by Substance Labs) to enable the cross chain confidential payment.
+
+
 <br>
 
 ### Technical Stack
@@ -18,6 +22,8 @@
 ## Remarks
 
 - This repo is originally forked from the [aztec-workshop](https://github.com/0xShaito/aztec-workshop) repo.
+
+
 
 <br>
 
