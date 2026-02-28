@@ -6,6 +6,7 @@ codegenCache.json
 # Secret files
 .env
 .env.local
+.env.bak
 
 # Node modules
 node_modules/
@@ -25,3 +26,4 @@ pxe-test-x402/
 
 # Aztec SC test 
 test-output.log
+
