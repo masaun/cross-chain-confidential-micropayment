@@ -8,8 +8,10 @@ codegenCache.json
 .env.local
 
 # Node modules
-node_modules
+node_modules/
+bun.lockb
 package-lock.json
+yarn.lock
 
 # Others
 log/
